@@ -20,6 +20,11 @@ class Trie {
         flag = new boolean[100];
     }
 
+    private void init(){
+        Arrays.fill(flag, false);
+        list.clear();
+    }
+
     // Inserts a word into the trie.
     public void insert(String word) {
         TrieNode node = root;
@@ -37,7 +42,8 @@ class Trie {
     	
     	if(node.isEnd())
 		{
-    		list.add(matchedWord);
+            if(matchedWord.length() > 1)
+    		  list.add(matchedWord);
 		}
 
     	String matchThisFar = "";
@@ -60,7 +66,7 @@ class Trie {
 
     
     public boolean search(String word) {
-        Arrays.fill(flag, false);
+        init();
 
         String matchedWord = "";
         searchMatch(root, word, matchedWord);
